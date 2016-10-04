@@ -68,7 +68,7 @@ public class ThreadSchedulingManager {
 	}
 
 	private func createSchedulingData(forIndex index: Int) -> ThreadSchedulingData {
-		let label = ThreadSchedulingManager.dispatcherPrefix + String(index)
+		let label = identifier + ThreadSchedulingManager.dispatcherPrefix + String(index)
 		let scheduler = dispatch_queue_create(label, DISPATCH_QUEUE_SERIAL)
 		let data = dataSource?.getData(forSchedulerIdentifier: identifier, withIndex: index)
 
@@ -77,8 +77,20 @@ public class ThreadSchedulingManager {
 	}
 
 	/**
-	 Enqueue the task to scheduler. In case no input is required, pass Void.self
+	 Enqueue a task to the scheduler.
+	 K -> type of any object that you wish to pass as parameter
+	 This is passed via the "input" paramter
 
+	 If you do not wish to pass anything, pass Void.self
+
+	 V -> Any result that you wish to pass from the task to the callback
+
+	 Please note that callback will always run on main thread
+	 task can run on any thread .. you cannot control which thread will be used
+
+	 - parameter task:     the task to run
+	 - parameter input:    any data that you wish to pass as parameter
+	 - parameter callback: the callback to run on main thread once the task is executed
 	 */
 	public func enqueueTask<K, V>(task: (input: K) -> V, input: K, callback: ((V) -> Void)?) {
 		guard schedulerList.count > 0 else {
@@ -107,10 +119,21 @@ public class ThreadSchedulingManager {
 		}
 	}
 
+	/**
+	 The scheduler to dispatch the next task to
+
+	 - returns: the most suitable scheduler to dispatch the next task to
+	 */
+
 	private func getNextScheduler() -> dispatch_queue_t {
 		objc_sync_enter(self)
 		var index = (lastUpdatedScheduler + 1) % schedulerList.count
 		var scheduler = schedulerList[index]
+
+		/**
+		 *  If the next scheduler in the list has a non-zero number of scheduled tasks,
+		 *  loop through the list of schedulers to find the one with the least number of scheduled tasks
+		 */
 
 		if scheduler.numberOfScheduledTasks > 0 {
 			let currentScheduler
@@ -139,6 +162,13 @@ public class ThreadSchedulingManager {
 	public func reset() {
 
 	}
+
+	/**
+	 We follow the convention that the name of the dispatcher =
+	 <dispatcherIdentifier>_Scheduler_<indexWithinDispatcher>
+
+	 - returns: dispatcher
+	 */
 
 	private func getIndexForCurrentDispatcher() -> Int? {
 		let dispatcherLabelPointer = dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL)
