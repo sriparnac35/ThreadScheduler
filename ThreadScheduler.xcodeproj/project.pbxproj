@@ -12,6 +12,9 @@
 		F69133B61DA4194F00A07276 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F69133B41DA4194F00A07276 /* Main.storyboard */; };
 		F69133B81DA4194F00A07276 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F69133B71DA4194F00A07276 /* Assets.xcassets */; };
 		F69133BB1DA4194F00A07276 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F69133B91DA4194F00A07276 /* LaunchScreen.storyboard */; };
+		F69133C41DA4198D00A07276 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69133C31DA4198D00A07276 /* Scheduler.swift */; };
+		F69133C61DA41A9C00A07276 /* SchedulerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69133C51DA41A9C00A07276 /* SchedulerFactory.swift */; };
+		F69133C91DA4268B00A07276 /* SchedulerExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69133C81DA4268B00A07276 /* SchedulerExample.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		F69133B71DA4194F00A07276 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F69133BA1DA4194F00A07276 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F69133BC1DA4194F00A07276 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F69133C31DA4198D00A07276 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
+		F69133C51DA41A9C00A07276 /* SchedulerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerFactory.swift; sourceTree = "<group>"; };
+		F69133C81DA4268B00A07276 /* SchedulerExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerExample.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +60,9 @@
 		F69133AF1DA4194F00A07276 /* ThreadScheduler */ = {
 			isa = PBXGroup;
 			children = (
+				F69133C21DA4197D00A07276 /* Schedulers */,
 				F69133B01DA4194F00A07276 /* AppDelegate.swift */,
+				F69133C71DA425CD00A07276 /* Examples */,
 				F69133B21DA4194F00A07276 /* ViewController.swift */,
 				F69133B41DA4194F00A07276 /* Main.storyboard */,
 				F69133B71DA4194F00A07276 /* Assets.xcassets */,
@@ -62,6 +70,23 @@
 				F69133BC1DA4194F00A07276 /* Info.plist */,
 			);
 			path = ThreadScheduler;
+			sourceTree = "<group>";
+		};
+		F69133C21DA4197D00A07276 /* Schedulers */ = {
+			isa = PBXGroup;
+			children = (
+				F69133C31DA4198D00A07276 /* Scheduler.swift */,
+				F69133C51DA41A9C00A07276 /* SchedulerFactory.swift */,
+			);
+			path = Schedulers;
+			sourceTree = "<group>";
+		};
+		F69133C71DA425CD00A07276 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				F69133C81DA4268B00A07276 /* SchedulerExample.swift */,
+			);
+			path = Examples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +160,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F69133C91DA4268B00A07276 /* SchedulerExample.swift in Sources */,
+				F69133C61DA41A9C00A07276 /* SchedulerFactory.swift in Sources */,
+				F69133C41DA4198D00A07276 /* Scheduler.swift in Sources */,
 				F69133B31DA4194F00A07276 /* ViewController.swift in Sources */,
 				F69133B11DA4194F00A07276 /* AppDelegate.swift in Sources */,
 			);
